@@ -1,9 +1,9 @@
 package ru.geekbrains.simplecrm.auth.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import ru.geekbrains.simplecrm.auth.model.dto.AuthRequestDTO;
+import ru.geekbrains.simplecrm.auth.model.dto.AuthResponseDTO;
 import ru.geekbrains.simplecrm.auth.services.AuthService;
 
 @RestController
@@ -18,18 +18,20 @@ public class AuthController {
         return authService.alive();
     }
 
-    @GetMapping("/signup")
-    public String signUp() {
-        return authService.signUp();
+    @PostMapping("/signup")
+    public AuthResponseDTO signUp(@RequestBody AuthRequestDTO request) {
+        return authService.signUp(request);
     }
 
-    @GetMapping("/login")
-    public String logIn() {
-        return authService.logIn();
+    @PostMapping("/login")
+    public AuthResponseDTO logIn(@RequestBody AuthRequestDTO request) {
+        return authService.logIn(request);
     }
 
     @GetMapping("/logout")
-    public String logOut() {
-        return authService.logOut();
+    public void logOut(@RequestHeader("Authorization") String token) {
+        if (token != null) {
+            authService.logOut(token);
+        }
     }
 }
