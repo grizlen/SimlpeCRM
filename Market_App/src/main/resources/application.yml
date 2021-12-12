@@ -3,8 +3,8 @@ server:
 
 spring:
   application:
-    name: auth-app
+    name: market-app
   config:
     import: optional:configserver:http://localhost:8888
   datasource:
-    url: jdbc:h2:mem:crm_auth_db;MODE=PostgreSQL
+    url: jdbc:h2:mem:crm_market_db;MODE=PostgreSQL

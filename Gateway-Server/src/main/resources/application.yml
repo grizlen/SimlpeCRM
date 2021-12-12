@@ -30,6 +30,10 @@ spring:
           uri: lb://auth-app
           predicates:
             - Path=/api/*/auth/**
+        - id: market-app
+          uri: lb://market-app
+          predicates:
+            - Path=/api/*/market/**
 #          filters:
 #            - StripPrefix=1
 

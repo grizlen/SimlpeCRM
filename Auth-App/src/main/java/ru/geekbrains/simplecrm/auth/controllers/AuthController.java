@@ -13,11 +13,6 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @GetMapping
-    public String alive() {
-        return authService.alive();
-    }
-
     @PostMapping("/signup")
     public AuthResponseDTO signUp(@RequestBody AuthRequestDTO request) {
         return authService.signUp(request);

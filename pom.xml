@@ -16,6 +16,7 @@
         <module>Gateway-Server</module>
         <module>Config-Server</module>
         <module>FrontEnd_Server</module>
+        <module>Market_App</module>
     </modules>
 
     <properties>

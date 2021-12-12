@@ -26,10 +26,6 @@ public class AuthService {
     private final PasswordEncoder passwordEncoder;
     private final ITokenService tokenService;
 
-    public String alive() {
-        return "alive";
-    }
-
     public AuthResponseDTO signUp(AuthRequestDTO request) {
         User user = new User();
         user.setLogin(request.getLogin());
