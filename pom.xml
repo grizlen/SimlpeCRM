@@ -15,6 +15,7 @@
         <module>Auth-App</module>
         <module>Gateway-Server</module>
         <module>Config-Server</module>
+        <module>FrontEnd_Server</module>
     </modules>
 
     <properties>
