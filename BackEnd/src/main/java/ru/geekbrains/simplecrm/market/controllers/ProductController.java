@@ -11,6 +11,7 @@ import ru.geekbrains.simplecrm.market.services.ProductService;
 @RequestMapping("/api/v1/market/products")
 @RequiredArgsConstructor
 @Slf4j
+@CrossOrigin("*")
 public class ProductController {
 
     private final ProductService productService;
