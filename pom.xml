@@ -10,13 +10,8 @@
     <version>1.0</version>
 
     <modules>
-        <module>Common-lib</module>
-        <module>Eureka-Server</module>
-        <module>Auth-App</module>
-        <module>Gateway-Server</module>
-        <module>Config-Server</module>
         <module>FrontEnd_Server</module>
-        <module>Market_App</module>
+        <module>BackEnd</module>
     </modules>
 
     <properties>
