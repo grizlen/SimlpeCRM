@@ -4,6 +4,15 @@ create table users (id bigserial not null constraint users_id_pk primary key, lo
 
 create table users_roles(user_id bigint references users(id), role_id int references roles(id));
 
+create table user_details (
+    id: bigserial not null constraint user_details_id_pk primary key,
+    user_id bigint references user(id),
+    first_name varchar(50),
+    last_name varchar(50),
+    sure_name varchar(50),
+    phone varchar(15),
+    address varchar(100));
+
 insert into roles(name) values
 ('ROLE_ADMIN'),
 ('ROLE_USER');
@@ -13,3 +22,6 @@ insert into users(login, password) values
 
 insert into users_roles(user_id, role_id) values
 (1, 2);
+
+insert into user_details(user_id) values
+(1);
