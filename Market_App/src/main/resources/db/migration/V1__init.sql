@@ -1,10 +1,10 @@
-CREATE TABLE 'products' (
+CREATE TABLE product (
   `id` bigserial PRIMARY KEY,
   `title` varchar(255) NOT NULL,
   `price` int NOT NULL
 );
 
-insert into 'products' (title, price)
+insert into product (title, price)
 values
 ('Хлеб', 24),
 ('Молоко', 65),

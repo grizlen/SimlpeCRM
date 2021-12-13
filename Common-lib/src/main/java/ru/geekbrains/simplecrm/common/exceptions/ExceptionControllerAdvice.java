@@ -18,6 +18,15 @@ public class ExceptionControllerAdvice {
     }
 
     @ExceptionHandler
+    public ResponseEntity<?> handleResourceNotFoundException(ResourceNotFoundException e) {
+        return new ResponseEntity<>(
+                new ExceptionInfoDTO(HttpStatus.NOT_FOUND.value(),
+                        e.getClass().getName() + ": " + e.getMessage()),
+                HttpStatus.NOT_FOUND
+        );
+    }
+
+    @ExceptionHandler
     public ResponseEntity<?> handleOtherException(Exception e) {
         return new ResponseEntity<>(
                 new ExceptionInfoDTO(HttpStatus.INTERNAL_SERVER_ERROR.value(),

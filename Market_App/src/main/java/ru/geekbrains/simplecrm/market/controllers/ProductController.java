@@ -1,13 +1,10 @@
 package ru.geekbrains.simplecrm.market.controllers;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-import ru.geekbrains.simplecrm.market.model.Products;
+import org.springframework.data.domain.Page;
+import org.springframework.web.bind.annotation.*;
+import ru.geekbrains.simplecrm.market.model.dto.ProductDTO;
 import ru.geekbrains.simplecrm.market.services.ProductService;
-
-import java.util.List;
 
 @RestController
 @RequestMapping("/api/v1/market/products")
@@ -17,7 +14,12 @@ public class ProductController {
     private final ProductService productService;
 
     @GetMapping
-    public List<Products> getAll() {
-        return productService.getAll();
+    public Page<ProductDTO> getAll(@RequestParam(name = "page", defaultValue = "0") Integer page) {
+        return productService.getAll(page < 0 ? 0 : page);
+    }
+
+    @GetMapping("/{id}")
+    public ProductDTO getById(@PathVariable Long id) {
+        return productService.getById(id);
     }
 }
