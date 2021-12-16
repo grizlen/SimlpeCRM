@@ -47,7 +47,7 @@ public class UserService {
         userData.setId(dto.getId());
         userData.setFirstName(dto.getFirstName());
         userData.setLastName(dto.getLastName());
-        userData.setSureName(dto.getSureName());
+        userData.setSurName(dto.getSurName());
         userData.setEmail(dto.getEmail());
         userData.setPhone(dto.getPhone());
         userData.setAddress(dto.getAddress());
@@ -55,14 +55,14 @@ public class UserService {
     }
 
     private UserDataDTO userDataToDTO(UserData userData) {
-        UserDataDTO dto = new UserDataDTO();
-        dto.setId(userData.getId());
-        dto.setFirstName(userData.getFirstName());
-        dto.setLastName(userData.getLastName());
-        dto.setSureName(userData.getSureName());
-        dto.setEmail(userData.getEmail());
-        dto.setPhone(userData.getPhone());
-        dto.setAddress(userData.getAddress());
-        return dto;
+        return UserDataDTO.builder()
+                .id(userData.getId())
+                .firstName(userData.getFirstName())
+                .lastName(userData.getLastName())
+                .surName(userData.getSurName())
+                .email(userData.getEmail())
+                .phone(userData.getPhone())
+                .address(userData.getAddress())
+                .build();
     }
 }
