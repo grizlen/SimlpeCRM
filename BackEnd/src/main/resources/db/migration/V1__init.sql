@@ -16,6 +16,7 @@ CREATE TABLE user_details (
     first_name VARCHAR(50),
     last_name VARCHAR(50),
     sure_name VARCHAR(50),
+    email VARCHAR(50),
     phone VARCHAR(15),
     address VARCHAR(100));
 

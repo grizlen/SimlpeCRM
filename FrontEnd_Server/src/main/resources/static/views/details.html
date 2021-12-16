@@ -1,0 +1,21 @@
+<div ng-controller="detailsController">
+    <div class="content">
+        <h1>Details</h1>
+<!--        <p>{{userDetails}}</p>-->
+        <div class="form-info">
+            <label>first name</label>
+            <input type="text" ng-model="userDetails.firstName">
+            <label>last name</label>
+            <input type="text" ng-model="userDetails.lastName">
+            <label>sure name</label>
+            <input type="text" ng-model="userDetails.sureName">
+            <label>e-mail</label>
+            <input type="email" ng-model="userDetails.email">
+            <label>phone</label>
+            <input type="tel" ng-model="userDetails.phone">
+            <label>address</label>
+            <input type="text" ng-model="userDetails.address">
+        </div>
+        <button class="list-button" ng-click="saveDetails()">Save</button>
+    </div>
+</div>

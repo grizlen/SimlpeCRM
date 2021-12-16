@@ -1,12 +1,16 @@
 var crmApp = angular.module('crmApp', ['ngRoute', 'ngStorage'])
     .config(function ($routeProvider) {
-        $routeProvider.when('/login', {
-            templateUrl: 'views/login.html',
-            controller: 'loginController'
-        });
+        // $routeProvider.when('/login', {
+        //     templateUrl: 'views/details.html',
+        //     controller: 'loginController'
+        // });
         $routeProvider.when('/products', {
             templateUrl: 'views/products.html',
             controller: 'productsController'
+        });
+        $routeProvider.when('/details', {
+            templateUrl: 'views/details.html',
+            controller: 'detailsController'
         });
         // $routeProvider.when('/cart', {
         //     templateUrl: 'views/cart.html',

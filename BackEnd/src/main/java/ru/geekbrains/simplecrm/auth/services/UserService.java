@@ -2,9 +2,10 @@ package ru.geekbrains.simplecrm.auth.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import ru.geekbrains.simplecrm.auth.model.dto.UserDetailsDTO;
-import ru.geekbrains.simplecrm.auth.model.entity.UserDetails;
-import ru.geekbrains.simplecrm.auth.repositories.UserDetailsRepository;
+import ru.geekbrains.simplecrm.auth.model.dto.UserDataDTO;
+import ru.geekbrains.simplecrm.auth.model.entity.User;
+import ru.geekbrains.simplecrm.auth.model.entity.UserData;
+import ru.geekbrains.simplecrm.auth.repositories.UserDataRepository;
 import ru.geekbrains.simplecrm.auth.repositories.UserRepository;
 import ru.geekbrains.simplecrm.common.exceptions.AutorizationException;
 
@@ -15,31 +16,53 @@ import java.util.Optional;
 
 public class UserService {
 
-    private final UserDetailsRepository userDetailsRepository;
+    private final UserDataRepository userDataRepository;
     private final UserRepository userRepository;
 
-    public UserDetailsDTO getDetails(Long id) {
-        if (id == null || userRepository.findById(id).isEmpty()) {
+    public UserDataDTO getUserData(String login) {
+        Optional<User> userOptional;
+        if (login == null || (userOptional = userRepository.findByLogin(login)).isEmpty()) {
             throw new AutorizationException("user not found");
         }
-        Optional<UserDetails> userDetails = userDetailsRepository.findById(id);
-        UserDetails details =userDetails.orElse(null);
-        if (userDetails.isEmpty()) {
-            details = new UserDetails();
-            details.setId(id);
-            details = userDetailsRepository.save(details);
+        UserData userData =userDataRepository.findById(userOptional.get().getId())
+                .orElse(null);
+        if (userData == null) {
+            userData = new UserData();
+            userData.setId(userOptional.get().getId());
+            userData = userDataRepository.save(userData);
         }
-        return userDetailsToDTO(details);
+        return userDataToDTO(userData);
     }
 
-    private UserDetailsDTO userDetailsToDTO(UserDetails details) {
-        UserDetailsDTO dto = new UserDetailsDTO();
-        dto.setId(details.getId());
-        dto.setFirstName(details.getFirstName());
-        dto.setLastName(details.getLastName());
-        dto.setSureName(details.getSureName());
-        dto.setPhone(details.getPhone());
-        dto.setAddress(details.getAddress());
+    public void saveUserData(UserDataDTO request) {
+        if (userRepository.findById(request.getId()).isEmpty()) {
+            throw new AutorizationException("user not found.");
+        }
+        UserData userData = userDataDtoToUserData(request);
+        userDataRepository.save(userData);
+    }
+
+    private UserData userDataDtoToUserData(UserDataDTO dto) {
+        UserData userData = new UserData();
+        userData.setId(dto.getId());
+        userData.setFirstName(dto.getFirstName());
+        userData.setLastName(dto.getLastName());
+        userData.setSureName(dto.getSureName());
+        userData.setEmail(dto.getEmail());
+        userData.setPhone(dto.getPhone());
+        userData.setAddress(dto.getAddress());
+        return userData;
+    }
+
+    private UserDataDTO userDataToDTO(UserData userData) {
+        UserDataDTO dto = new UserDataDTO();
+        dto.setId(userData.getId());
+        dto.setFirstName(userData.getFirstName());
+        dto.setLastName(userData.getLastName());
+        dto.setSureName(userData.getSureName());
+        dto.setEmail(userData.getEmail());
+        dto.setPhone(userData.getPhone());
+        dto.setAddress(userData.getAddress());
         return dto;
     }
 }
