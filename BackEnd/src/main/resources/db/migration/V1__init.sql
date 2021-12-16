@@ -11,11 +11,11 @@ CREATE TABLE users_roles(
     user_id BIGINT references users(id),
     role_id INT references roles(id));
 
-CREATE TABLE user_details (
+CREATE TABLE user_data (
     id BIGINT NOT NULL CONSTRAINT user_details_id_pk PRIMARY KEY,
     first_name VARCHAR(50),
     last_name VARCHAR(50),
-    sure_name VARCHAR(50),
+    sur_name VARCHAR(50),
     email VARCHAR(50),
     phone VARCHAR(15),
     address VARCHAR(100));
@@ -38,7 +38,7 @@ INSERT INTO users_roles(user_id, role_id)
     VALUES
         (1, 2);
 
-INSERT INTO user_details(id)
+INSERT INTO user_data(id)
     VALUES
         (1);
 

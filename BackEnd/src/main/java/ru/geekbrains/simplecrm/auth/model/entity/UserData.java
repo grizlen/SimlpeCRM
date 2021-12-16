@@ -7,7 +7,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_details")
+@Table(name = "user_data")
 @Getter
 @Setter
 @NoArgsConstructor
@@ -18,8 +18,8 @@ public class UserData {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
-    @Column(name = "sure_name")
-    private String sureName;
+    @Column(name = "sur_name")
+    private String surName;
     private String email;
     private String phone;
     private String address;
