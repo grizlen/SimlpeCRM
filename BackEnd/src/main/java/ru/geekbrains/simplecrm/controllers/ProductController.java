@@ -1,11 +1,11 @@
-package ru.geekbrains.simplecrm.market.controllers;
+package ru.geekbrains.simplecrm.controllers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.simplecrm.market.model.dto.ProductDTO;
-import ru.geekbrains.simplecrm.market.services.ProductService;
+import ru.geekbrains.simplecrm.model.dto.ProductDTO;
+import ru.geekbrains.simplecrm.services.ProductService;
 
 @RestController
 @RequestMapping("/api/v1/market/products")

@@ -1,4 +1,4 @@
-package ru.geekbrains.simplecrm.market.model;
+package ru.geekbrains.simplecrm.model.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

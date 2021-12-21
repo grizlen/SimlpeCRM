@@ -1,4 +1,4 @@
-package ru.geekbrains.simplecrm.market.model.dto;
+package ru.geekbrains.simplecrm.model.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

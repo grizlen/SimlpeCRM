@@ -1,13 +1,13 @@
-package ru.geekbrains.simplecrm.market.services;
+package ru.geekbrains.simplecrm.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import ru.geekbrains.simplecrm.exceptions.ResourceNotFoundException;
-import ru.geekbrains.simplecrm.market.model.Product;
-import ru.geekbrains.simplecrm.market.model.dto.ProductDTO;
-import ru.geekbrains.simplecrm.market.repositories.ProductRepository;
+import ru.geekbrains.simplecrm.model.entity.Product;
+import ru.geekbrains.simplecrm.model.dto.ProductDTO;
+import ru.geekbrains.simplecrm.repositories.ProductRepository;
 
 @Service
 @RequiredArgsConstructor

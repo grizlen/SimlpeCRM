@@ -1,7 +1,7 @@
 crmApp.controller('detailsController',
     function loginController($scope, $http) {
 
-        const contextPath = 'http://localhost:5555/api/v1/users';
+        const contextPath = 'http://localhost:5555/api/v1/clients';
 
         $scope.userDetails = null;
 

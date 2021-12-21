@@ -25,6 +25,26 @@ CREATE TABLE products (
     title VARCHAR(255) NOT NULL,
     price INT NOT NULL);
 
+CREATE TABLE cart_items
+(
+    id                BIGSERIAL primary key,
+    user_id           BIGINT,
+    product_id        BIGINT,
+    quantity          INT
+);
+
+CREATE TABLE order_items
+(
+    id              BIGSERIAL primary key,
+    user_id         BIGINT,
+    product_id      BIGINT,
+    quantity        INT,
+    price           BIGINT,
+    amount          BIGINT,
+    paid            timestamp,
+    delivered       timestamp
+);
+
 INSERT INTO roles(name)
     VALUES
         ('ROLE_ADMIN'),
