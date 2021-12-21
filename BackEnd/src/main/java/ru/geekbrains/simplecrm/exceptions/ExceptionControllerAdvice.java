@@ -1,4 +1,4 @@
-package ru.geekbrains.simplecrm.common.exceptions;
+package ru.geekbrains.simplecrm.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

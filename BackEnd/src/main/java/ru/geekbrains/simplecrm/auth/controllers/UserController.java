@@ -6,7 +6,7 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.web.bind.annotation.*;
 import ru.geekbrains.simplecrm.auth.model.dto.UserDataDTO;
 import ru.geekbrains.simplecrm.auth.services.UserService;
-import ru.geekbrains.simplecrm.common.model.UserInfo;
+import ru.geekbrains.simplecrm.security.UserInfo;
 
 import java.security.Principal;
 

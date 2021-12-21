@@ -3,6 +3,8 @@ package ru.geekbrains.simplecrm.auth.model.dto;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import ru.geekbrains.simplecrm.auth.model.entity.User;
+import ru.geekbrains.simplecrm.auth.model.entity.UserData;
 
 @Getter
 @Setter
@@ -16,15 +18,31 @@ public class UserDataDTO {
     private String phone;
     private String address;
 
-    public static Builder builder() {
-        return new Builder();
+    public static Builder builder(Long id) {
+        return new Builder(id);
+    }
+
+    public static Builder builder(UserData user) {
+        return new Builder(user);
     }
 
     public static class Builder {
         private final UserDataDTO result;
 
-        private Builder() {
+        private Builder(Long id) {
             result = new UserDataDTO();
+            result.id = id;
+        }
+
+        public Builder(UserData userData) {
+            result = new UserDataDTO();
+            result.id = userData.getId();
+            result.firstName = userData.getFirstName();
+            result.lastName = userData.getLastName();
+            result.surName = userData.getSurName();
+            result.email = userData.getEmail();
+            result.phone = userData.getPhone();
+            result.address = userData.getAddress();
         }
 
         public UserDataDTO build() {

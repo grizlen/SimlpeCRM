@@ -7,7 +7,7 @@ import ru.geekbrains.simplecrm.auth.model.entity.User;
 import ru.geekbrains.simplecrm.auth.model.entity.UserData;
 import ru.geekbrains.simplecrm.auth.repositories.UserDataRepository;
 import ru.geekbrains.simplecrm.auth.repositories.UserRepository;
-import ru.geekbrains.simplecrm.common.exceptions.AutorizationException;
+import ru.geekbrains.simplecrm.exceptions.AutorizationException;
 
 import java.util.Optional;
 
@@ -55,14 +55,7 @@ public class UserService {
     }
 
     private UserDataDTO userDataToDTO(UserData userData) {
-        return UserDataDTO.builder()
-                .id(userData.getId())
-                .firstName(userData.getFirstName())
-                .lastName(userData.getLastName())
-                .surName(userData.getSurName())
-                .email(userData.getEmail())
-                .phone(userData.getPhone())
-                .address(userData.getAddress())
+        return UserDataDTO.builder(userData)
                 .build();
     }
 }

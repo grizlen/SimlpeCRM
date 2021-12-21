@@ -9,9 +9,9 @@ import ru.geekbrains.simplecrm.auth.model.entity.Role;
 import ru.geekbrains.simplecrm.auth.model.entity.User;
 import ru.geekbrains.simplecrm.auth.repositories.RoleRepository;
 import ru.geekbrains.simplecrm.auth.repositories.UserRepository;
-import ru.geekbrains.simplecrm.common.services.ITokenService;
-import ru.geekbrains.simplecrm.common.exceptions.AutorizationException;
-import ru.geekbrains.simplecrm.common.model.UserInfo;
+import ru.geekbrains.simplecrm.exceptions.AutorizationException;
+import ru.geekbrains.simplecrm.security.UserInfo;
+import ru.geekbrains.simplecrm.security.JwtService;
 
 import java.util.Collections;
 import java.util.stream.Collectors;
@@ -24,40 +24,40 @@ public class AuthService {
     private final UserRepository userRepository;
     private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
-    private final ITokenService tokenService;
+    private final JwtService jwtService;
 
-    public AuthResponseDTO signUp(AuthRequestDTO request) {
+    public AuthResponseDTO signUp(String login, String password, String authority) {
         User user = new User();
-        user.setLogin(request.getLogin());
-        user.setPassword(passwordEncoder.encode(request.getPassword()));
-        Role role = roleRepository.findByName("ROLE_USER").orElseThrow(
-                () -> new RuntimeException("Role USER not found")
+        user.setLogin(login);
+        user.setPassword(passwordEncoder.encode(password));
+        Role role = roleRepository.findByName(authority).orElseThrow(
+                () -> new AutorizationException("Role: " + authority + " not found.")
         );
         user.setRoles(Collections.singletonList(role));
         UserInfo userInfo = userToUserInfo(userRepository.save(user));
-        return new AuthResponseDTO(userInfo.getLogin(), tokenService.generateToken(userInfo));
+        return new AuthResponseDTO(login, jwtService.generateToken(userInfo));
     }
 
-    public AuthResponseDTO logIn(AuthRequestDTO request) {
-        User user = userRepository.findByLogin(request.getLogin()).orElseThrow(
-                () -> new AutorizationException("User: " + request.getLogin() + " not found.")
+    public AuthResponseDTO logIn(String login, String password) {
+        User user = userRepository.findByLogin(login).orElseThrow(
+                () -> new AutorizationException("User: " + login + " not found.")
         );
-        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(password, user.getPassword())) {
             throw new AutorizationException("invalid password");
         }
-        return new AuthResponseDTO(user.getLogin(), tokenService.generateToken(userToUserInfo(user)));
+        return new AuthResponseDTO(login, jwtService.generateToken(userToUserInfo(user)));
     }
 
     public void logOut(String token) {
-        // TODO: 13.12.2021 Redis support
-//        redisRepository.setKey(token);
     }
 
     private UserInfo userToUserInfo(User user) {
-        UserInfo userInfo = new UserInfo();
-        userInfo.setId(user.getId());
-        userInfo.setLogin(user.getLogin());
-        userInfo.setRoles(user.getRoles().stream().map(r -> r.getName()).collect(Collectors.toList()));
-        return userInfo;
+        return new UserInfo(
+                user.getId(),
+                user.getLogin(),
+                user.getRoles().stream()
+                        .map(role -> role.getName())
+                        .collect(Collectors.joining(","))
+                );
     }
 }

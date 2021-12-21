@@ -1,4 +1,4 @@
-package ru.geekbrains.simplecrm.common.exceptions;
+package ru.geekbrains.simplecrm.exceptions;
 
 import lombok.Data;
 

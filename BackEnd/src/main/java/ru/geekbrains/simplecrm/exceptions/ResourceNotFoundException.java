@@ -1,4 +1,4 @@
-package ru.geekbrains.simplecrm.common.exceptions;
+package ru.geekbrains.simplecrm.exceptions;
 
 public class ResourceNotFoundException extends RuntimeException {
     public ResourceNotFoundException(String message) {
