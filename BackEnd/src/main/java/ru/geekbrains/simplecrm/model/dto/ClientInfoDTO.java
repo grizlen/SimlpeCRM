@@ -1,15 +1,14 @@
-package ru.geekbrains.simplecrm.auth.model.dto;
+package ru.geekbrains.simplecrm.model.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import ru.geekbrains.simplecrm.auth.model.entity.User;
-import ru.geekbrains.simplecrm.auth.model.entity.UserData;
+import ru.geekbrains.simplecrm.model.entity.ClientInfo;
 
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserDataDTO {
+public class ClientInfoDTO {
     private Long id;
     private String firstName;
     private String lastName;
@@ -22,30 +21,30 @@ public class UserDataDTO {
         return new Builder(id);
     }
 
-    public static Builder builder(UserData user) {
+    public static Builder builder(ClientInfo user) {
         return new Builder(user);
     }
 
     public static class Builder {
-        private final UserDataDTO result;
+        private final ClientInfoDTO result;
 
         private Builder(Long id) {
-            result = new UserDataDTO();
+            result = new ClientInfoDTO();
             result.id = id;
         }
 
-        public Builder(UserData userData) {
-            result = new UserDataDTO();
-            result.id = userData.getId();
-            result.firstName = userData.getFirstName();
-            result.lastName = userData.getLastName();
-            result.surName = userData.getSurName();
-            result.email = userData.getEmail();
-            result.phone = userData.getPhone();
-            result.address = userData.getAddress();
+        public Builder(ClientInfo clientInfo) {
+            result = new ClientInfoDTO();
+            result.id = clientInfo.getId();
+            result.firstName = clientInfo.getFirstName();
+            result.lastName = clientInfo.getLastName();
+            result.surName = clientInfo.getSurName();
+            result.email = clientInfo.getEmail();
+            result.phone = clientInfo.getPhone();
+            result.address = clientInfo.getAddress();
         }
 
-        public UserDataDTO build() {
+        public ClientInfoDTO build() {
             return result;
         }
 

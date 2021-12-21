@@ -3,9 +3,9 @@ package ru.geekbrains.simplecrm.controllers;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.simplecrm.auth.model.dto.AuthRequestDTO;
-import ru.geekbrains.simplecrm.auth.model.dto.AuthResponseDTO;
-import ru.geekbrains.simplecrm.auth.services.AuthService;
+import ru.geekbrains.simplecrm.model.dto.AuthRequestDTO;
+import ru.geekbrains.simplecrm.model.dto.AuthResponseDTO;
+import ru.geekbrains.simplecrm.services.AuthService;
 
 @RestController
 @RequestMapping("/api/v1/auth")

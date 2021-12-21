@@ -1,35 +1,35 @@
-package ru.geekbrains.simplecrm.auth.controllers;
+package ru.geekbrains.simplecrm.controllers;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
-import ru.geekbrains.simplecrm.auth.model.dto.UserDataDTO;
-import ru.geekbrains.simplecrm.auth.services.UserService;
+import ru.geekbrains.simplecrm.model.dto.ClientInfoDTO;
+import ru.geekbrains.simplecrm.services.ClientService;
 import ru.geekbrains.simplecrm.security.UserInfo;
 
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/api/v1/users")
+@RequestMapping("/api/v1/clients")
 @RequiredArgsConstructor
 @CrossOrigin("*")
 @Slf4j
-public class UserController {
+public class ClientsController {
 
-    private final UserService userService;
+    private final ClientService clientService;
 
     @GetMapping
-    public UserDataDTO getUserData(Principal principal) {
+    public ClientInfoDTO getUserData(Principal principal) {
         UserInfo userInfo = (UserInfo) ((UsernamePasswordAuthenticationToken) principal).getPrincipal();
         String login = userInfo.getLogin();
-        return userService.getUserData(login);
+        return clientService.getClientInfo(login);
     }
 
     @PostMapping
-    public void postUserData(@RequestBody UserDataDTO request) {
+    public void postUserData(@RequestBody ClientInfoDTO request) {
         if (request != null && request.getId() != null) {
-            userService.saveUserData(request);
+            clientService.saveClientInfo(request);
         }
     }
 }

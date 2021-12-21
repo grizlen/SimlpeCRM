@@ -1,4 +1,4 @@
-package ru.geekbrains.simplecrm.auth.model.entity;
+package ru.geekbrains.simplecrm.model.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -7,11 +7,11 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "user_data")
+@Table(name = "clients_info")
 @Getter
 @Setter
 @NoArgsConstructor
-public class UserData {
+public class ClientInfo {
     @Id
     private Long id;
     @Column(name = "first_name")

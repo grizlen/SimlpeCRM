@@ -1,17 +1,16 @@
-package ru.geekbrains.simplecrm.auth.services;
+package ru.geekbrains.simplecrm.services;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import ru.geekbrains.simplecrm.auth.model.dto.AuthRequestDTO;
-import ru.geekbrains.simplecrm.auth.model.dto.AuthResponseDTO;
-import ru.geekbrains.simplecrm.auth.model.entity.Role;
-import ru.geekbrains.simplecrm.auth.model.entity.User;
-import ru.geekbrains.simplecrm.auth.repositories.RoleRepository;
-import ru.geekbrains.simplecrm.auth.repositories.UserRepository;
+import ru.geekbrains.simplecrm.repositories.UserRepository;
 import ru.geekbrains.simplecrm.exceptions.AutorizationException;
-import ru.geekbrains.simplecrm.security.UserInfo;
+import ru.geekbrains.simplecrm.model.dto.AuthResponseDTO;
+import ru.geekbrains.simplecrm.model.entity.Role;
+import ru.geekbrains.simplecrm.model.entity.User;
+import ru.geekbrains.simplecrm.repositories.RoleRepository;
 import ru.geekbrains.simplecrm.security.JwtService;
+import ru.geekbrains.simplecrm.security.UserInfo;
 
 import java.util.Collections;
 import java.util.stream.Collectors;

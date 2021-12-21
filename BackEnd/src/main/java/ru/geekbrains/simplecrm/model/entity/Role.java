@@ -1,4 +1,4 @@
-package ru.geekbrains.simplecrm.auth.model.entity;
+package ru.geekbrains.simplecrm.model.entity;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
